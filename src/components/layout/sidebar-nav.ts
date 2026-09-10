@@ -1,6 +1,14 @@
-import { LayoutDashboard, Users, Settings, Layers, type LucideIcon } from "lucide-react";
+import { LayoutDashboard, Users, Settings, Layers, Newspaper, Contact, BookOpen, CalendarCheck, FlaskConical, FileCheck, Landmark, Target, type LucideIcon } from "lucide-react";
 import { hasPermission, P } from "@/features/identity";
 import { SAMPLE_P } from "@/features/sample";
+import { NEWS_P } from "@/features/news";
+import { STAFF_P } from "@/features/staff";
+import { CURRICULUM_P } from "@/features/curriculum";
+import { BOOKING_P } from "@/features/booking";
+import { RESEARCH_P } from "@/features/research";
+import { EDOC_P } from "@/features/edoc";
+import { FINANCE_P } from "@/features/finance";
+import { STRATEGY_P } from "@/features/strategy";
 
 export interface NavItem {
   /** i18n key */
@@ -16,6 +24,38 @@ export interface NavCrumb { title: string; href: string }
 
 export const sidebarGroups: NavGroup[] = [
   { label: "nav.group.overview", items: [{ title: "nav.dashboard", href: "/dashboard", icon: LayoutDashboard }] },
+  {
+    label: "roles.module.finance",
+    items: [{ title: "finance.nav", href: "/admin/finance", icon: Landmark, permission: FINANCE_P.financeRead }],
+  },
+  {
+    label: "roles.module.strategy",
+    items: [{ title: "strategy.nav", href: "/admin/strategy", icon: Target, permission: STRATEGY_P.strategyRead }],
+  },
+  {
+    label: "roles.module.edoc",
+    items: [{ title: "edoc.nav", href: "/admin/edoc", icon: FileCheck, permission: EDOC_P.edocRead }],
+  },
+  {
+    label: "roles.module.research",
+    items: [{ title: "research.nav", href: "/admin/research", icon: FlaskConical, permission: RESEARCH_P.researchRead }],
+  },
+  {
+    label: "roles.module.booking",
+    items: [{ title: "booking.nav", href: "/admin/booking", icon: CalendarCheck, permission: BOOKING_P.bookingRead }],
+  },
+  {
+    label: "roles.module.curriculum",
+    items: [{ title: "curriculum.nav", href: "/admin/curriculum", icon: BookOpen, permission: CURRICULUM_P.curriculumRead }],
+  },
+  {
+    label: "roles.module.news",
+    items: [{ title: "news.nav", href: "/admin/news", icon: Newspaper, permission: NEWS_P.newsRead }],
+  },
+  {
+    label: "roles.module.staff",
+    items: [{ title: "staff.nav", href: "/admin/staff", icon: Contact, permission: STAFF_P.staffRead }],
+  },
   {
     label: "nav.group.sample",
     items: [{ title: "sample.nav", href: "/sample", icon: Layers, permission: SAMPLE_P.sampleRead }],

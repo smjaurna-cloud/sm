@@ -1,0 +1,33 @@
+import type { Dictionary } from "@/shared/lib/i18n/translate";
+
+export const MESSAGES: Dictionary = {
+  "strategy.title": { th: "แผนยุทธศาสตร์และตัวชี้วัด", en: "Strategic Plan & KPIs" },
+  "strategy.subtitle": {
+    th: "วิสัยทัศน์ พันธกิจ เสาหลักการพัฒนา และความก้าวหน้าตามตัวชี้วัดผลการดำเนินงานของคณะ",
+    en: "Faculty vision, mission, strategic development pillars, and KPI performance progress",
+  },
+  "strategy.nav": { th: "ยุทธศาสตร์และ KPI", en: "Strategy & KPIs" },
+  "strategy.vision": { th: "วิสัยทัศน์", en: "Vision" },
+  "strategy.mission": { th: "พันธกิจ", en: "Mission" },
+  "strategy.pillars": { th: "เสาหลักยุทธศาสตร์", en: "Strategic Pillars" },
+  "strategy.kpis": { th: "ตัวชี้วัดผลการดำเนินงาน (KPIs)", en: "Key Performance Indicators" },
+  "strategy.overallProgress": { th: "ความก้าวหน้าภาพรวมยุทธศาสตร์", en: "Strategic Achievement" },
+  "strategy.target": { th: "ค่าเป้าหมาย", en: "Target" },
+  "strategy.actual": { th: "ผลงานจริง", en: "Actual" },
+  "strategy.unit": { th: "หน่วยนับ", en: "Unit" },
+  "strategy.status": { th: "สถานะ", en: "Status" },
+  "strategy.status.on_track": { th: "เป็นไปตามเป้าหมาย", en: "On Track" },
+  "strategy.status.at_risk": { th: "มีความเสี่ยง", en: "At Risk" },
+  "strategy.status.off_track": { th: "ต่ำกว่าเป้าหมาย", en: "Off Track" },
+  "strategy.status.achieved": { th: "บรรลุเป้าหมายแล้ว", en: "Achieved" },
+  "strategy.addPlan": { th: "เพิ่มแผนยุทธศาสตร์", en: "Add Strategic Plan" },
+  "strategy.addPillar": { th: "เพิ่มเสาหลักยุทธศาสตร์", en: "Add Pillar" },
+  "strategy.addKpi": { th: "เพิ่มตัวชี้วัด KPI", en: "Add KPI" },
+  "strategy.updateKpi": { th: "อัปเดตผลการดำเนินงาน", en: "Update KPI Actual" },
+  "strategy.deleteKpi": { th: "ลบตัวชี้วัด", en: "Delete KPI" },
+  "strategy.empty": { th: "ยังไม่มีข้อมูลแผนยุทธศาสตร์", en: "No strategic plans found" },
+  "strategy.search": { th: "ค้นหาตัวชี้วัด หรือเสาหลักยุทธศาสตร์...", en: "Search KPIs or pillars..." },
+  "roles.module.strategy": { th: "แผนยุทธศาสตร์และตัวชี้วัด", en: "Strategy & KPIs" },
+  "perm.strategy:read": { th: "ดูแผนยุทธศาสตร์และตัวชี้วัด", en: "View strategic plan and KPIs" },
+  "perm.strategy:manage": { th: "จัดการแผนยุทธศาสตร์และตัวชี้วัด", en: "Manage strategic plan and KPIs" },
+};
