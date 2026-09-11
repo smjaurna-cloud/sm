@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth, resolveTenantSettings } from "@/features/identity/server";
 import { getT } from "@/i18n/server";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { GraduationCap, Newspaper, Users, BookOpen, CalendarCheck, FlaskConical, FileCheck, Landmark, Target, LayoutDashboard, LogIn } from "lucide-react";
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
@@ -112,6 +113,7 @@ export default async function PortalLayout({ children }: { children: React.React
 
           <div className="flex items-center gap-2 sm:gap-3">
             <LanguageSwitcher className="h-9 w-9 rounded-lg border" />
+            <ThemeToggle className="h-9 w-9 rounded-lg border" />
 
             {isLoggedIn ? (
               <Link
