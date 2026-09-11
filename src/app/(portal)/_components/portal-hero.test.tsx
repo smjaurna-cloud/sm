@@ -1,6 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { PortalHero } from "./portal-hero";
+import { render, screen, fireEvent } from "@testing-library/react";
+import {
+  PortalHero,
+  SAKYASIHA_SLIDES,
+  SAKYASIHA_ACTIVITIES,
+} from "./portal-hero";
 import { I18nProvider } from "@/shared/lib/i18n/client";
 import { UI_MESSAGES } from "@/i18n";
 
@@ -82,5 +86,61 @@ describe("PortalHero", () => {
     expectedPillars.forEach((title) => {
       expect(screen.getByRole("heading", { name: title })).toBeTruthy();
     });
+  });
+
+  it("เรนเดอร์ภาพพื้นหลังเคลื่อนไหว (Motion Background) จาก sakyasiha.org ครบ 5 ภาพ", () => {
+    renderHero();
+
+    const bgContainer = screen.getByTestId("hero-motion-background");
+    expect(bgContainer).toBeTruthy();
+
+    SAKYASIHA_SLIDES.forEach((slide) => {
+      const img = screen.getByAltText(slide.title);
+      expect(img).toBeTruthy();
+      expect(img.getAttribute("src")).toBe(slide.url);
+    });
+  });
+
+  it("สามารถกดเปลี่ยนภาพสไลด์และหยุด/เล่นการเคลื่อนไหวได้", () => {
+    renderHero();
+
+    // เริ่มต้นที่สไลด์แรก
+    expect(
+      screen.getByText("อาคารหอประชุมเตปิฏกสังคีติสิทธาคาร")
+    ).toBeTruthy();
+
+    // กดปุ่มสไลด์ถัดไป
+    const nextBtn = screen.getByTitle("ภาพถัดไป");
+    fireEvent.click(nextBtn);
+    expect(screen.getByText("พระคันธกุฎี วชิราลงกรณ")).toBeTruthy();
+
+    // กดปุ่มสไลด์ก่อนหน้า
+    const prevBtn = screen.getByTitle("ภาพก่อนหน้า");
+    fireEvent.click(prevBtn);
+    expect(
+      screen.getByText("อาคารหอประชุมเตปิฏกสังคีติสิทธาคาร")
+    ).toBeTruthy();
+
+    // กดปุ่ม Pause / Play
+    const pauseBtn = screen.getByTitle("หยุดเคลื่อนไหว");
+    fireEvent.click(pauseBtn);
+    expect(screen.getByTitle("เล่นการเคลื่อนไหว")).toBeTruthy();
+  });
+
+  it("เรนเดอร์แถบกิจกรรมเคลื่อนไหวต่อเนื่อง (Live Ticker) จาก sakyasiha.org", () => {
+    renderHero();
+
+    const ticker = screen.getByTestId("hero-activity-ticker");
+    expect(ticker).toBeTruthy();
+
+    expect(
+      screen.getByText("กิจกรรมและข่าวสารสำคัญจาก Sakyasiha.org")
+    ).toBeTruthy();
+    expect(screen.getByText("เข้าสู่เว็บไซต์ sakyasiha.org")).toBeTruthy();
+
+    // ตรวจสอบว่ามีรายการกิจกรรมจาก sakyasiha ปรากฏในแถบ
+    expect(
+      screen.getAllByText(SAKYASIHA_ACTIVITIES[0].title).length
+    ).toBeGreaterThan(0);
   });
 });

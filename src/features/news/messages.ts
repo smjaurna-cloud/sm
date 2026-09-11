@@ -152,4 +152,20 @@ export const MESSAGES: Dictionary = {
     th: "ระบบบริการออนไลน์แบบครบวงจร ทั้งการจองทรัพยากร สารบรรณอิเล็กทรอนิกส์ และการติดตามผล สะดวก รวดเร็ว ทุกที่ทุกเวลา",
     en: "Comprehensive digital ecosystem including resource booking, e-documents, and real-time tracking anytime, anywhere.",
   },
+  "portal.hero.motion.badge": {
+    th: "ทัศนียภาพและกิจกรรมจริง มหาวชิราลงกรณบาลีเถรวาทราชวิทยาลัย",
+    en: "Live Milestones & Scenes — Sakyasiha.org",
+  },
+  "portal.hero.motion.pause": { th: "หยุดเคลื่อนไหว", en: "Pause Motion" },
+  "portal.hero.motion.play": { th: "เล่นการเคลื่อนไหว", en: "Play Motion" },
+  "portal.hero.motion.prev": { th: "ภาพก่อนหน้า", en: "Previous Slide" },
+  "portal.hero.motion.next": { th: "ภาพถัดไป", en: "Next Slide" },
+  "portal.hero.motion.tickerTitle": {
+    th: "กิจกรรมและข่าวสารสำคัญจาก Sakyasiha.org",
+    en: "Featured Highlights from Sakyasiha.org",
+  },
+  "portal.hero.motion.visitSource": {
+    th: "เข้าสู่เว็บไซต์ sakyasiha.org",
+    en: "Visit sakyasiha.org",
+  },
 };
