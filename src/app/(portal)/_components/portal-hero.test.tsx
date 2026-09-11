@@ -143,4 +143,22 @@ describe("PortalHero", () => {
       screen.getAllByText(SAKYASIHA_ACTIVITIES[0].title).length
     ).toBeGreaterThan(0);
   });
+
+  it("เรนเดอร์องค์ประกอบสไตล์ Neubrutalism และ Interactive Mindful Breathing Widget", () => {
+    renderHero();
+
+    // ตรวจสอบสติกเกอร์ Neubrutalism
+    expect(screen.getByText("100% สมาธิและปัญญาบริสุทธิ์")).toBeTruthy();
+    expect(screen.getByText("209+ หมุดไม้มงคลสถาปนา")).toBeTruthy();
+    expect(screen.getByText("ออนไลน์ 24 ชม.")).toBeTruthy();
+
+    // ตรวจสอบวิดเจ็ตฝึกกำหนดลมหายใจ
+    expect(screen.getByText("✦ MINDFUL BREATHING")).toBeTruthy();
+    expect(screen.getByText("หยุดฝึก")).toBeTruthy();
+
+    // ทดสอบคลิกหยุดฝึก / เริ่มฝึก
+    const toggleBreathingBtn = screen.getByText("หยุดฝึก");
+    fireEvent.click(toggleBreathingBtn);
+    expect(screen.getByText("เริ่มฝึกกำหนดลมหายใจ")).toBeTruthy();
+  });
 });

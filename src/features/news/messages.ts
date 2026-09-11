@@ -168,4 +168,44 @@ export const MESSAGES: Dictionary = {
     th: "เข้าสู่เว็บไซต์ sakyasiha.org",
     en: "Visit sakyasiha.org",
   },
+  "portal.hero.neubrutalism.sticker1": {
+    th: "100% สมาธิและปัญญาบริสุทธิ์",
+    en: "100% Mindful & Pure Wisdom",
+  },
+  "portal.hero.neubrutalism.sticker2": {
+    th: "209+ หมุดไม้มงคลสถาปนา",
+    en: "209+ Sacred Foundation Pillars",
+  },
+  "portal.hero.neubrutalism.sticker3": {
+    th: "สังคายนาพระไตรปิฎกสากล",
+    en: "Global Tepiṭaka Chanting",
+  },
+  "portal.hero.neubrutalism.sticker4": {
+    th: "วิถีบาลีศากยสีหะ",
+    en: "Sakyasiha Pali Tradition",
+  },
+  "portal.hero.neubrutalism.liveBadge": {
+    th: "ออนไลน์ 24 ชม.",
+    en: "Live 24/7",
+  },
+  "portal.hero.neubrutalism.breatheIn": {
+    th: "หายใจเข้า (สติ)",
+    en: "Inhale (Mindful)",
+  },
+  "portal.hero.neubrutalism.breatheHold": {
+    th: "กลั้นหายใจ (สงบ)",
+    en: "Hold (Calm)",
+  },
+  "portal.hero.neubrutalism.breatheOut": {
+    th: "หายใจออก (ปัญญา)",
+    en: "Exhale (Wisdom)",
+  },
+  "portal.hero.neubrutalism.breatheStart": {
+    th: "เริ่มฝึกกำหนดลมหายใจ",
+    en: "Start Breathing Practice",
+  },
+  "portal.hero.neubrutalism.breatheStop": {
+    th: "หยุดฝึก",
+    en: "Stop Practice",
+  },
 };
