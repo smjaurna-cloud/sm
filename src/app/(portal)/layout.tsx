@@ -20,6 +20,15 @@ export default async function PortalLayout({ children }: { children: React.React
         facultyName={t("portal.facultyName")}
         facultyTagline={t("portal.facultyTagline")}
         isLoggedIn={isLoggedIn}
+        initialUser={
+          session?.user
+            ? {
+                name: session.user.name,
+                email: session.user.email,
+                image: session.user.image,
+              }
+            : null
+        }
       />
 
       {/* Main Content */}
