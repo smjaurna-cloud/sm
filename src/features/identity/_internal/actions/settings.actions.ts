@@ -3,10 +3,12 @@ import { revalidatePath } from "next/cache";
 import { runAction, type ActionResult } from "@/shared/lib/result";
 import { getLocale } from "@/shared/lib/i18n/server";
 import { zodErrorMap } from "@/shared/lib/i18n/zod-locale";
+import { errors } from "@/shared/lib/errors";
 import { P } from "../../permissions";
 import { requirePermission } from "../rbac";
 import { updateSettingsSchema } from "../validations/settings";
 import { getTenantSettings, updateTenantSettings, type TenantSettings } from "../services/tenant.service";
+import { saveUploadedLogo } from "../services/logo-upload.service";
 
 export async function getSettingsAction(): Promise<ActionResult<TenantSettings>> {
   return runAction(async () => getTenantSettings((await requirePermission(P.settingsManage)).tenantId));
@@ -18,3 +20,16 @@ export async function updateSettingsAction(input: unknown): Promise<ActionResult
     revalidatePath("/", "layout"); // data-palette บน <html> อ่านใหม่
   });
 }
+
+export async function uploadLogoAction(formData: FormData): Promise<ActionResult<{ url: string }>> {
+  return runAction(async () => {
+    const ctx = await requirePermission(P.settingsManage);
+    const file = formData.get("file");
+    if (!file || typeof file === "string") {
+      throw errors.validation("No file uploaded", { file: ["Please select an image file to upload"] });
+    }
+    const url = await saveUploadedLogo({ tenantId: ctx.tenantId, file: file as File });
+    return { url };
+  });
+}
+

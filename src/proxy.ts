@@ -10,6 +10,7 @@ const PUBLIC_PREFIXES = [
   "/favicon.ico",
   "/images/",
   "/videos/",
+  "/uploads/",
   "/news",
   "/staff",
   "/curriculum",
