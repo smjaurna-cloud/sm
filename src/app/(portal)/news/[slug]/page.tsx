@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getT } from "@/i18n/server";
@@ -17,6 +18,32 @@ import {
   Newspaper,
   Tag,
 } from "lucide-react";
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await props.params;
+  const locale = await getLocale();
+  const tenantId = await resolveCurrentTenantId();
+  const article = await getPublicArticleBySlug(tenantId, slug);
+
+  if (!article) {
+    return { title: "Article Not Found | Faculty News" };
+  }
+
+  const title = locale === "en" ? article.titleEn : article.titleTh;
+  const description = (locale === "en" ? article.summaryEn : article.summaryTh) || undefined;
+
+  return {
+    title: `${title} | Faculty News`,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: article.coverImageUrl ? [article.coverImageUrl] : [],
+    },
+  };
+}
 
 export default async function ArticleDetailPage(props: {
   params: Promise<{ slug: string }>;

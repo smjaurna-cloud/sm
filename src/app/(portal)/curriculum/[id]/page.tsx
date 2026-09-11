@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getT } from "@/i18n/server";
@@ -20,6 +21,34 @@ import {
   Briefcase,
   Layers,
 } from "lucide-react";
+
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await props.params;
+  const locale = await getLocale();
+  const tenantId = await resolveCurrentTenantId();
+  const curriculum = await getPublicCurriculumById(tenantId, id);
+
+  if (!curriculum) {
+    return { title: "Curriculum Not Found | Faculty Programs" };
+  }
+
+  const name = locale === "en" ? curriculum.nameEn : curriculum.nameTh;
+  const degree = locale === "en" ? curriculum.degreeEn : curriculum.degreeTh;
+  const description =
+    (locale === "en" ? curriculum.descriptionEn : curriculum.descriptionTh) ||
+    `${degree} - Faculty Programs`;
+
+  return {
+    title: `${name} (${degree}) | Faculty Programs`,
+    description,
+    openGraph: {
+      title: `${name} | Faculty Programs`,
+      description,
+    },
+  };
+}
 
 export default async function CurriculumDetailPage(props: {
   params: Promise<{ id: string }>;

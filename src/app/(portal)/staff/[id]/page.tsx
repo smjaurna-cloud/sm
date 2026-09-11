@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getT } from "@/i18n/server";
@@ -18,6 +19,35 @@ import {
   Award,
   ShieldCheck,
 } from "lucide-react";
+
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await props.params;
+  const locale = await getLocale();
+  const tenantId = await resolveCurrentTenantId();
+  const profile = await getPublicStaffProfileById(tenantId, id);
+
+  if (!profile) {
+    return { title: "Staff Not Found | Faculty Directory" };
+  }
+
+  const fullName = locale === "en" ? profile.fullNameEn : profile.fullNameTh;
+  const titlePrefix = locale === "en" ? profile.titleEn : profile.titleTh;
+  const title = `${titlePrefix ? `${titlePrefix} ` : ""}${fullName}`;
+  const deptName =
+    locale === "en" ? profile.departmentNameEn : profile.departmentNameTh;
+
+  return {
+    title: `${title} | Faculty Directory`,
+    description: `${title} - ${deptName || "Faculty of Science & Technology"}`,
+    openGraph: {
+      title,
+      description: `${title} - ${deptName || "Faculty"}`,
+      images: profile.avatarUrl ? [profile.avatarUrl] : [],
+    },
+  };
+}
 
 export default async function StaffProfileDetailPage(props: {
   params: Promise<{ id: string }>;

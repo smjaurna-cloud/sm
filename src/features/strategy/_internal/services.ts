@@ -1,5 +1,5 @@
 import { prisma } from "@/shared/lib/infra/prisma";
-import { writeAudit, auth } from "@/features/identity/server";
+import { writeAudit } from "@/features/identity/server";
 import type {
   KpiStatus,
   CreateStrategicPlanInput,
@@ -8,21 +8,13 @@ import type {
   UpdateStrategicKpiInput,
   UpdateKpiActualInput,
 } from "./validations";
+import {
+  calculateAchievementRate,
+  autoDeriveStatus,
+  calculatePillarAverage,
+} from "./calculations";
 
-export async function resolveCurrentTenantId(): Promise<string> {
-  try {
-    const session = await auth();
-    if (session?.tenantId) return session.tenantId;
-  } catch {
-    // fallback below
-  }
-  const defaultTenant = await prisma.tenant.findFirst({
-    where: { isActive: true },
-    select: { id: true },
-  });
-  if (!defaultTenant) throw new Error("No active tenant found");
-  return defaultTenant.id;
-}
+
 
 export interface StrategicKpiDto {
   id: string;
@@ -84,20 +76,6 @@ export interface StrategicPlanDto {
   updatedAt: string;
 }
 
-function calculateAchievementRate(actual: number, target: number): number {
-  if (target <= 0) return 0;
-  const rate = (actual / target) * 100;
-  return Number(Math.min(100, Math.max(0, rate)).toFixed(1));
-}
-
-function autoDeriveStatus(actual: number, target: number): KpiStatus {
-  if (target <= 0) return "ON_TRACK";
-  const ratio = actual / target;
-  if (ratio >= 1.0) return "ACHIEVED";
-  if (ratio >= 0.8) return "ON_TRACK";
-  if (ratio >= 0.6) return "AT_RISK";
-  return "OFF_TRACK";
-}
 
 export async function getActiveStrategicPlan(
   tenantId: string
@@ -128,12 +106,10 @@ export async function getActiveStrategicPlan(
   };
 
   const pillarsDto: StrategicPillarDto[] = plan.pillars.map((pillar) => {
-    let pillarRateSum = 0;
     const kpisDto: StrategicKpiDto[] = pillar.kpis.map((kpi) => {
       const rate = calculateAchievementRate(kpi.actualValue, kpi.targetValue);
       totalKpis += 1;
       sumKpiRates += rate;
-      pillarRateSum += rate;
 
       if (kpi.status === "ACHIEVED") statusCounts.achieved += 1;
       else if (kpi.status === "ON_TRACK") statusCounts.onTrack += 1;
@@ -161,8 +137,7 @@ export async function getActiveStrategicPlan(
       };
     });
 
-    const pillarAvgRate =
-      pillar.kpis.length > 0 ? Number((pillarRateSum / pillar.kpis.length).toFixed(1)) : 0;
+    const pillarAvgRate = calculatePillarAverage(kpisDto.map((k) => k.achievementRate));
 
     return {
       id: pillar.id,

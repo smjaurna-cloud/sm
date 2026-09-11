@@ -1,6 +1,6 @@
 import { prisma } from "@/shared/lib/infra/prisma";
 import type { Prisma } from "@/generated/prisma";
-import { writeAudit, auth } from "@/features/identity/server";
+import { writeAudit } from "@/features/identity/server";
 import type {
   CreateCurriculumInput,
   UpdateCurriculumInput,
@@ -37,19 +37,6 @@ export interface CurriculumDto {
   updatedAt: string;
 }
 
-export async function resolveCurrentTenantId(): Promise<string> {
-  try {
-    const session = await auth();
-    if (session?.tenantId) return session.tenantId;
-  } catch {
-    // guest
-  }
-  const first = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true },
-  });
-  return first?.id ?? "";
-}
 
 function mapCurriculum(item: {
   id: string;

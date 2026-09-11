@@ -63,3 +63,18 @@ export const resolvePalette = cache(async (): Promise<PaletteId> => {
     return DEFAULT_PALETTE;
   }
 });
+
+/**
+ * คืน tenantId ปัจจุบัน: ดึงจาก session ถ้ามี ไม่งั้นดึง tenant แรกของระบบ (สำหรับผู้เยี่ยมชม public portal) · ไม่ throw
+ */
+export const resolveCurrentTenantId = cache(async (): Promise<string> => {
+  try {
+    const sid = await sessionTenantId();
+    if (sid) return sid;
+    const first = await prisma.tenant.findFirst({ orderBy: { createdAt: "asc" }, select: { id: true } });
+    return first?.id ?? "";
+  } catch {
+    return "";
+  }
+});
+

@@ -4,5 +4,6 @@ export {
   getApprovalRequestById,
   getApprovalRequestByNumber,
   getApprovalStats,
-  resolveCurrentTenantId,
 } from "./_internal/services";
+
+export { resolveCurrentTenantId } from "@/features/identity/server";

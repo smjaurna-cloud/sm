@@ -1,6 +1,6 @@
 import { prisma } from "@/shared/lib/infra/prisma";
 import type { Prisma } from "@/generated/prisma";
-import { writeAudit, auth } from "@/features/identity/server";
+import { writeAudit } from "@/features/identity/server";
 import type {
   CreateRequestInput,
   DocumentPriority,
@@ -63,20 +63,6 @@ export interface ApprovalStatsDto {
   rejectedCount: number;
 }
 
-export async function resolveCurrentTenantId(): Promise<string> {
-  try {
-    const session = await auth();
-    if (session?.tenantId) return session.tenantId;
-  } catch {
-    // fallback
-  }
-  const defaultTenant = await prisma.tenant.findFirst({
-    where: { isActive: true },
-    select: { id: true },
-  });
-  if (!defaultTenant) throw new Error("No active tenant found");
-  return defaultTenant.id;
-}
 
 type RequestWithRelations = Prisma.ApprovalRequestGetPayload<{
   include: {

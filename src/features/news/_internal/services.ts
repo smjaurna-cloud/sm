@@ -1,17 +1,7 @@
 import { prisma } from "@/shared/lib/infra/prisma";
 import type { Prisma } from "@/generated/prisma";
-import { writeAudit, auth } from "@/features/identity/server";
+import { writeAudit } from "@/features/identity/server";
 
-export async function resolveCurrentTenantId(): Promise<string> {
-  try {
-    const session = await auth();
-    if (session?.tenantId) return session.tenantId;
-  } catch {
-    // guest visitor
-  }
-  const first = await prisma.tenant.findFirst({ orderBy: { createdAt: "asc" }, select: { id: true } });
-  return first?.id ?? "";
-}
 import type {
   CreateNewsArticleInput,
   UpdateNewsArticleInput,

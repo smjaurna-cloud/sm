@@ -1,6 +1,6 @@
 import { prisma } from "@/shared/lib/infra/prisma";
 import type { Prisma } from "@/generated/prisma";
-import { writeAudit, auth } from "@/features/identity/server";
+import { writeAudit } from "@/features/identity/server";
 import type {
   BudgetCategory,
   BudgetTxType,
@@ -8,21 +8,13 @@ import type {
   UpdateBudgetPlanInput,
   RecordTransactionInput,
 } from "./validations";
+import {
+  calculateExecutionRate,
+  calculateRemainingBudget,
+  calculateCategoryStats,
+} from "./calculations";
 
-export async function resolveCurrentTenantId(): Promise<string> {
-  try {
-    const session = await auth();
-    if (session?.tenantId) return session.tenantId;
-  } catch {
-    // fallback below
-  }
-  const defaultTenant = await prisma.tenant.findFirst({
-    where: { isActive: true },
-    select: { id: true },
-  });
-  if (!defaultTenant) throw new Error("No active tenant found");
-  return defaultTenant.id;
-}
+
 
 export interface FiscalYearDto {
   id: string;
@@ -176,8 +168,8 @@ export async function listBudgetPlans(
   return plans.map((p) => {
     const allocated = p.allocatedAmount.toNumber();
     const spent = p.spentAmount.toNumber();
-    const remaining = Math.max(0, allocated - spent);
-    const executionRate = allocated > 0 ? Number(((spent / allocated) * 100).toFixed(2)) : 0;
+    const remaining = calculateRemainingBudget(allocated, spent);
+    const executionRate = calculateExecutionRate(spent, allocated);
 
     return {
       id: p.id,
@@ -262,26 +254,13 @@ export async function getBudgetSummary(
     where: { tenantId, fiscalYearId: activeYear.id },
   });
 
-  const categories: BudgetCategory[] = [
-    "PERSONNEL",
-    "OPERATING",
-    "INVESTMENT",
-    "SUBSIDY",
-    "OTHER",
-  ];
-
-  const categoryStats: CategoryStatDto[] = categories.map((cat) => {
-    const catPlans = plans.filter((p) => p.category === cat);
-    const allocated = catPlans.reduce((sum, p) => sum + p.allocatedAmount.toNumber(), 0);
-    const spent = catPlans.reduce((sum, p) => sum + p.spentAmount.toNumber(), 0);
-    const executionRate = allocated > 0 ? Number(((spent / allocated) * 100).toFixed(2)) : 0;
-    return {
-      category: cat,
-      allocated,
-      spent,
-      executionRate,
-    };
-  });
+  const categoryStats = calculateCategoryStats(
+    plans.map((p) => ({
+      category: p.category,
+      allocatedAmount: p.allocatedAmount.toNumber(),
+      spentAmount: p.spentAmount.toNumber(),
+    }))
+  );
 
   const recentTransactions = await listRecentTransactions(tenantId, 8);
 
