@@ -63,4 +63,30 @@ export const MESSAGES: Dictionary = {
   "portal.viewsCount": { th: "ครั้ง", en: "views" },
   "portal.publishedOn": { th: "เผยแพร่เมื่อ", en: "Published on" },
   "portal.attachments": { th: "เอกสารแนบและดาวน์โหลด", en: "Attachments & Downloads" },
+
+  // Portal Footer
+  "portal.footer.mission": {
+    th: "สถาบันชั้นนำด้านการศึกษา วิจัย และนวัตกรรมดิจิทัลเพื่อพัฒนาสังคมและเศรษฐกิจแห่งอนาคต",
+    en: "A leading institution in education, research, and digital innovation to empower society and the future economy.",
+  },
+  "portal.footer.academic": { th: "การศึกษาและวิจัย", en: "Academic & Research" },
+  "portal.footer.services": { th: "ระบบบริการออนไลน์", en: "Online Services" },
+  "portal.footer.contact": { th: "ติดต่อเรา", en: "Contact Us" },
+  "portal.footer.address": {
+    th: "สำนักงานคณบดี คณะเทคโนโลยีสารสนเทศและนวัตกรรมดิจิทัล อาคารปฏิบัติการวิชาการ",
+    en: "Dean's Office, Faculty of Information Technology and Digital Innovation, Academic Building",
+  },
+  "portal.footer.phone": { th: "โทรศัพท์", en: "Phone" },
+  "portal.footer.phoneNumber": { th: "0-2000-0000 ต่อ 101-105", en: "+66 2000 0000 ext. 101-105" },
+  "portal.footer.email": { th: "อีเมล", en: "Email" },
+  "portal.footer.emailAddress": { th: "contact@faculty.ac.th", en: "contact@faculty.ac.th" },
+  "portal.footer.hours": { th: "เวลาทำการ", en: "Office Hours" },
+  "portal.footer.hoursDetail": { th: "จันทร์ - ศุกร์: 08:30 - 16:30 น.", en: "Mon - Fri: 08:30 - 16:30" },
+  "portal.footer.rights": { th: "สงวนลิขสิทธิ์ทุกประการ", en: "All rights reserved." },
+  "portal.footer.poweredBy": { th: "ขับเคลื่อนโดย VibeCore Framework", en: "Powered by VibeCore Framework" },
+  "portal.footer.privacy": { th: "นโยบายความเป็นส่วนตัว", en: "Privacy Policy" },
+  "portal.footer.terms": { th: "ข้อกำหนดการใช้งาน", en: "Terms of Service" },
+  "portal.footer.sitemap": { th: "แผนผังเว็บไซต์", en: "Sitemap" },
+  "portal.footer.backToTop": { th: "กลับสู่ด้านบน", en: "Back to top" },
+  "portal.footer.socials": { th: "ช่องทางติดตาม", en: "Follow Us" },
 };
