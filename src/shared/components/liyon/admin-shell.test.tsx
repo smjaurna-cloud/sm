@@ -144,4 +144,15 @@ describe("AdminShell", () => {
     );
     expect(screen.getByText("3")).toBeTruthy();
   });
+
+  it("แสดงรูปภาพโลโก้เมื่อส่ง brandLogoUrl เข้ามา", () => {
+    render(
+      <AdminShell
+        {...baseProps({ brandLogoUrl: "/uploads/logos/logo-test.png" })}
+      />,
+    );
+    const img = screen.getByRole("img", { name: "VibeCore" });
+    expect(img.getAttribute("src")).toBe("/uploads/logos/logo-test.png");
+  });
 });
+

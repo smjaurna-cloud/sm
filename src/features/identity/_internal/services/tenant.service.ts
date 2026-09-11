@@ -78,3 +78,17 @@ export const resolveCurrentTenantId = cache(async (): Promise<string> => {
   }
 });
 
+/**
+ * คืน TenantSettings ปัจจุบัน: ดึงจาก tenantId ปัจจุบัน · คืน null ถ้าไม่พบ หรือ throw ไม่ได้
+ */
+export const resolveTenantSettings = cache(async (): Promise<TenantSettings | null> => {
+  try {
+    const tenantId = await resolveCurrentTenantId();
+    if (!tenantId) return null;
+    return await getTenantSettings(tenantId);
+  } catch {
+    return null;
+  }
+});
+
+
