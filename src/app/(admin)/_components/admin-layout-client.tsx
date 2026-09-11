@@ -16,9 +16,10 @@ import { hasPermission, P } from "@/features/identity";
 export interface AdminLayoutClientProps {
   children: React.ReactNode;
   logoUrl?: string | null;
+  brandName?: string | null;
 }
 
-export function AdminLayoutClient({ children, logoUrl }: AdminLayoutClientProps) {
+export function AdminLayoutClient({ children, logoUrl, brandName }: AdminLayoutClientProps) {
   const pathname = usePathname();
   const t = useT();
   const locale = useLocale();
@@ -48,7 +49,7 @@ export function AdminLayoutClient({ children, logoUrl }: AdminLayoutClientProps)
 
   return (
     <AdminShell
-      brandName={t("app.name")} brandTagline={t("app.tagline")} brandHref="/dashboard"
+      brandName={brandName || t("app.name")} brandTagline={t("app.tagline")} brandHref="/dashboard"
       brandLogoUrl={logoUrl}
       breadcrumb={breadcrumb} breadcrumbLabel={t("common.breadcrumb")}
       roleLabel={roles[0] ? localizedName(roles[0], locale) : null}
