@@ -89,4 +89,67 @@ export const MESSAGES: Dictionary = {
   "portal.footer.sitemap": { th: "แผนผังเว็บไซต์", en: "Sitemap" },
   "portal.footer.backToTop": { th: "กลับสู่ด้านบน", en: "Back to top" },
   "portal.footer.socials": { th: "ช่องทางติดตาม", en: "Follow Us" },
+
+  // Portal Hero (BaanWebsite Style with Liyon Theme)
+  "portal.hero.badge": {
+    th: "สถาบันชั้นนำด้านการศึกษา วิจัย และนวัตกรรมดิจิทัล",
+    en: "Leading Institution in Education, Research & Digital Innovation",
+  },
+  "portal.hero.title1": {
+    th: "พัฒนาศักยภาพสู่อนาคต",
+    en: "Empowering Your Future",
+  },
+  "portal.hero.title2": {
+    th: "สร้างความสำเร็จของคุณอย่างแตกต่างแบบมืออาชีพ",
+    en: "Building Your Success with Professional Excellence",
+  },
+  "portal.hero.subtitle": {
+    th: "มุ่งสู่ความเป็นเลิศทางวิชาการและเทคโนโลยีขั้นสูง พร้อมมอบประสบการณ์การเรียนรู้และวิจัยที่ตอบโจทย์ยุคดิจิทัลในทุกมิติ",
+    en: "Striving for academic and advanced technological excellence, providing learning and research experiences that answer the digital era.",
+  },
+  "portal.hero.cta.curriculum": { th: "สำรวจหลักสูตรการศึกษา", en: "Explore Curricula" },
+  "portal.hero.cta.contact": { th: "ปรึกษาข้อมูลการศึกษาฟรี", en: "Free Admissions Consultation" },
+  "portal.hero.hotline": { th: "สายด่วนข้อมูลการศึกษา: 0-2000-0000 ต่อ 101", en: "Admissions Hotline: +66 2000 0000 ext. 101" },
+  "portal.hero.slogan": { th: "LEARN • INNOVATE • LEAD", en: "LEARN • INNOVATE • LEAD" },
+  "portal.hero.sloganDesc": {
+    th: "การส่งมอบคุณภาพการศึกษาและบริการดิจิทัลครบวงจร ที่ช่วยให้ผู้เรียนและนักวิจัยประสบความสำเร็จ คือ",
+    en: "Delivering educational excellence and comprehensive digital services to empower learners and researchers is",
+  },
+  "portal.hero.sloganGoal": { th: "เป้าหมายสูงสุดของเรา", en: "Our Ultimate Goal" },
+  "portal.hero.sloganCta": { th: "ติดต่อสอบถามข้อมูลเพิ่มเติม", en: "Contact For More Info" },
+  "portal.hero.whyTitle": { th: "ทำไมต้องเลือกศึกษาและวิจัยกับเรา", en: "Why Study & Research With Us" },
+  "portal.hero.whySubtitle": {
+    th: "จุดเด่นและความพร้อมที่สร้างความแตกต่าง เพื่อความสำเร็จในเส้นทางอาชีพและวิชาการของคุณ",
+    en: "Distinct advantages and readiness designed to elevate your academic and career trajectory.",
+  },
+  "portal.hero.pillar1.title": { th: "Innovative Curricula", en: "Innovative Curricula" },
+  "portal.hero.pillar1.desc": {
+    th: "หลักสูตรทันสมัย ออกแบบอย่างสร้างสรรค์ ตอบโจทย์ความต้องการของอุตสาหกรรมเทคโนโลยีแห่งอนาคต ทั้ง AI, Data, Cyber Security และ Software",
+    en: "Modern curricula creatively designed to meet the demands of future technology industries, including AI, Data, Cyber Security, and Software.",
+  },
+  "portal.hero.pillar2.title": { th: "Smart Labs & Facilities", en: "Smart Labs & Facilities" },
+  "portal.hero.pillar2.desc": {
+    th: "ห้องปฏิบัติการอัจฉริยะ อุปกรณ์และซอฟต์แวร์มาตรฐานสากล รองรับทั้งการเรียนการสอน การทดลอง และการพัฒนานวัตกรรมจริง",
+    en: "Smart laboratories equipped with global standard tools and software for learning, experimenting, and real-world innovation.",
+  },
+  "portal.hero.pillar3.title": { th: "World-Class Research", en: "World-Class Research" },
+  "portal.hero.pillar3.desc": {
+    th: "ผลงานวิจัยและการตีพิมพ์ในวารสารชั้นนำระดับนานาชาติ พร้อมความร่วมมือกับมหาวิทยาลัยและสถาบันวิจัยระดับแนวหน้าของโลก",
+    en: "International research and publications in top journals, collaborating with world-renowned universities and research centers.",
+  },
+  "portal.hero.pillar4.title": { th: "Career Opportunities", en: "Career Opportunities" },
+  "portal.hero.pillar4.desc": {
+    th: "เครือข่ายความร่วมมือกับบริษัทไอทีชั้นนำ โอกาสฝึกงานและร่วมงานกับองค์กรระดับแนวหน้าทั้งในประเทศและต่างประเทศ",
+    en: "Strong partnerships with leading IT enterprises offering internship and career opportunities both locally and globally.",
+  },
+  "portal.hero.pillar5.title": { th: "Mentorship & Grants", en: "Mentorship & Grants" },
+  "portal.hero.pillar5.desc": {
+    th: "คณาจารย์ผู้เชี่ยวชาญดูแลและให้คำปรึกษาอย่างใกล้ชิด พร้อมทุนการศึกษาและทุนสนับสนุนการวิจัยอย่างต่อเนื่อง",
+    en: "Close mentorship by expert faculty alongside continuous academic and research scholarship opportunities.",
+  },
+  "portal.hero.pillar6.title": { th: "Digital Ecosystem", en: "Digital Ecosystem" },
+  "portal.hero.pillar6.desc": {
+    th: "ระบบบริการออนไลน์แบบครบวงจร ทั้งการจองทรัพยากร สารบรรณอิเล็กทรอนิกส์ และการติดตามผล สะดวก รวดเร็ว ทุกที่ทุกเวลา",
+    en: "Comprehensive digital ecosystem including resource booking, e-documents, and real-time tracking anytime, anywhere.",
+  },
 };

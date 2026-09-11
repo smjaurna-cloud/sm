@@ -29,7 +29,7 @@ import {
   Target,
   ArrowUpRight,
 } from "lucide-react";
-import { HeroHumanMachine } from "./_components/hero-human-machine";
+import { PortalHero } from "./_components/portal-hero";
 
 export default async function PortalHomePage() {
   const [t, locale] = await Promise.all([getT(), getLocale()]);
@@ -136,8 +136,8 @@ export default async function PortalHomePage() {
 
   return (
     <div className="space-y-16 pb-20">
-      {/* 100% MotionSites Standard Hero Section: NeuralKinetics Human-Machine */}
-      <HeroHumanMachine />
+      {/* Modern BaanWebsite-inspired Hero Section with Liyon Theme System */}
+      <PortalHero />
 
       {/* 8-Module Portal Quick Navigation & Key Stats */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6">
